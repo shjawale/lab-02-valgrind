@@ -6,7 +6,7 @@ using std::cout;
 using std::endl;
 
 Person::Person(char *name, Person* father, Person* mother){
-    this->name = new char[strlen(name)];
+    this->name = new char[strlen(name) + 1];
     strcpy(this->name, name);
     this->father = father;
     this->mother = mother;
@@ -78,5 +78,6 @@ void expand(Person ***t, int *MAX){
   Person **temp = new Person*[2 * *MAX];
   memcpy(temp, *t, *MAX * sizeof(**t));
   *MAX *= 2;
+  delete[] *t;
   *t = temp;
 }
